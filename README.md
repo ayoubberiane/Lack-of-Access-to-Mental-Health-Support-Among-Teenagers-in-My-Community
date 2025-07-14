@@ -1,1 +1,0 @@
-# Lack-of-Access-to-Mental-Health-Support-Among-Teenagers-in-My-Community
