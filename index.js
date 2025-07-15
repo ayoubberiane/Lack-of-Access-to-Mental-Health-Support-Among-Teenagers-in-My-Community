@@ -16,11 +16,14 @@ function createParticles() {
 function createConnections() {
     const network = document.querySelector('.neural-network');
     const central = document.querySelector('.central-node');
-    const nodes = document.querySelectorAll('.node:not(.central-node)');
+    // We now select the node-container for positioning calculations
+    const nodes = document.querySelectorAll('.node-container:not(:has(.central-node))');
     
-    nodes.forEach((node, index) => {
+    nodes.forEach((nodeContainer, index) => {
         const connection = document.createElement('div');
         connection.className = 'connection';
+        
+        const node = nodeContainer.querySelector('.node'); // Get the actual node inside the container
         
         if (node.classList.contains('root-node')) {
             connection.classList.add('root-connection');
@@ -31,11 +34,13 @@ function createConnections() {
         }
         
         const centralRect = central.getBoundingClientRect();
-        const nodeRect = node.getBoundingClientRect();
+        // Use the container for the node's position
+        const nodeRect = nodeContainer.getBoundingClientRect(); 
         const networkRect = network.getBoundingClientRect();
         
         const centralX = centralRect.left + centralRect.width / 2 - networkRect.left;
         const centralY = centralRect.top + centralRect.height / 2 - networkRect.top;
+        // Adjust nodeX and nodeY to point to the center of the container
         const nodeX = nodeRect.left + nodeRect.width / 2 - networkRect.left;
         const nodeY = nodeRect.top + nodeRect.height / 2 - networkRect.top;
         
@@ -62,11 +67,14 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.node').forEach(node => {
         node.addEventListener('mouseenter', function() {
-            this.style.transform += ' scale(1.1)';
+            // Apply scale transform to the node itself
+            this.style.transform = (this.style.transform || '') + ' scale(1.1)';
         });
         
         node.addEventListener('mouseleave', function() {
+            // Remove the scale transform
             this.style.transform = this.style.transform.replace(' scale(1.1)', '');
         });
     });
 });
+
