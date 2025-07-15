@@ -43,8 +43,28 @@ body {
     max-width: 1400px;
 }
 
-.node {
+.node-container {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.node-description {
+    color: #a8c8ec;
+    font-size: 0.9em;
+    margin-bottom: 8px;
+    text-align: center;
+    width: 150px;
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-bottom: 5px;
+}
+
+.node {
+    position: relative;
     background: radial-gradient(circle, rgba(230, 243, 255, 0.15) 0%, rgba(230, 243, 255, 0.08) 50%, transparent 100%);
     border: 2px solid;
     border-radius: 50%;
@@ -70,9 +90,6 @@ body {
     height: 180px;
     border-color: #7eb3d3;
     color: #e6f3ff;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
     background: radial-gradient(circle, rgba(126, 179, 211, 0.25) 0%, rgba(126, 179, 211, 0.15) 50%, transparent 100%);
     box-shadow: 0 0 40px rgba(126, 179, 211, 0.3);
     font-size: 1em;
